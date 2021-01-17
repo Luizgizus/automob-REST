@@ -51,7 +51,7 @@ ENGINE = InnoDB;
 -- Table `automob`.`driving`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `automob`.`driving` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `car_id` INT NOT NULL,
   `driver_id` INT NOT NULL,
   `startedAt` DATETIME NOT NULL,
