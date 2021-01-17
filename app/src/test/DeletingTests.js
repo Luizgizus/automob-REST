@@ -4,7 +4,7 @@ const axios = require('axios')
 
 const assert = chai.assert
 
-async function testDelete() {
+async function testDeleteDriver() {
     try {
         const driver = await axios.delete("http://localhost:8000/automob/app/driver/" + global.idTestDriver)
 
@@ -20,7 +20,7 @@ async function testDelete() {
     }
 }
 
-async function testDelete() {
+async function testDeleteCar() {
     try {
         const car = await axios.delete("http://localhost:8000/automob/app/car/" + global.idTestCar)
 
@@ -38,6 +38,6 @@ async function testDelete() {
 
 
 describe('Deleting Tests', () => {
-    it('test deleting test driver', testDelete)
-    it('test deleting test car', testDelete)
+    it('test deleting test driver', testDeleteDriver)
+    it('test deleting test car', testDeleteCar)
 })
