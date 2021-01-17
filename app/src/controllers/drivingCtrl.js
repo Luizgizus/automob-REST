@@ -94,7 +94,7 @@ class DrivingCtrl {
             response.message = "nenhum dado do carro foi enviado"
             response.statusCode = 400
             response.isValid = false
-        } else if(!body.idDriving && body.idDriving !== 0){
+        } else if(!body.idDriving){
             response.message = "Favor informar a identificação do aluguel do carro"
             response.statusCode = 400
             response.isValid = false
