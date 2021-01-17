@@ -15,7 +15,7 @@ class DriverRouter {
     }
 
 	init() {
-        this.app.get(`${this.baseRoute}`, this.list.bind(this))
+        this.app.post(`${this.baseRoute}/list`, this.list.bind(this))
         this.app.get(`${this.baseRoute}/:id`, this.getById.bind(this))
         this.app.post(`${this.baseRoute}`, this.create.bind(this))
         this.app.put(`${this.baseRoute}/:id`, this.update.bind(this))
@@ -26,7 +26,7 @@ class DriverRouter {
         const response = _.clone(this.response)
         try {
             const driverCtrl = new DriverCtrl(this.dbPool)
-            const resp = await driverCtrl.listAll()
+            const resp = await driverCtrl.listAll(req.body)
 
             response.message = resp.message
             response.data = resp.data

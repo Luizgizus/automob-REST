@@ -5,9 +5,9 @@ class Car {
         this.dbPool = dbPool
     }
 
-	async listAll(){
+	async listAll(body){
         try {
-			const query = 
+			let query = 
                 `SELECT `+
                     `id 'idCar', `+
                     `plate, `+
@@ -15,7 +15,15 @@ class Car {
                     `color, `+
                     `isInUse `+
                 `FROM automob.car `+
-                `WHERE deletedAt is null`
+                `WHERE deletedAt is null `
+
+                if(body.color){
+                    query += `AND color LIKE '%${body.color}%' `
+                }
+
+                if(body.brand){
+                    query += `AND brand LIKE '%${body.brand}%' `
+                }
 
             return await this.dbPool.query(query)
         } catch (err) {

@@ -15,7 +15,7 @@ class CarRouter {
     }
 
 	init() {
-        this.app.get(`${this.baseRoute}`, this.list.bind(this))
+        this.app.post(`${this.baseRoute}/list`, this.list.bind(this))
         this.app.get(`${this.baseRoute}/:id`, this.getById.bind(this))
         this.app.post(`${this.baseRoute}`, this.create.bind(this))
         this.app.put(`${this.baseRoute}/:id`, this.update.bind(this))
@@ -26,7 +26,7 @@ class CarRouter {
         const response = _.clone(this.response)
         try {
             const carCtrl = new CarCtrl(this.dbPool)
-            const resp = await carCtrl.listAll()
+            const resp = await carCtrl.listAll(req.body)
 
             response.message = resp.message
             response.data = resp.data

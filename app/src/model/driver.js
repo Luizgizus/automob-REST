@@ -5,15 +5,19 @@ class Driver {
         this.dbPool = dbPool
     }
 
-	async listAll(){
+	async listAll(body){
         try {
-			const query = 
+			let query = 
                 `SELECT `+
                     `id 'idDriver', `+
                     `name, `+
                     `isUsingCar ` +
                 `FROM automob.driver `+
-                `WHERE deletedAt is null`
+                `WHERE deletedAt is null `
+
+                if(body.name){
+                    query += `AND name LIKE '%${body.name}%' `
+                }
 
             return await this.dbPool.query(query)
         } catch (err) {

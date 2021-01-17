@@ -6,7 +6,7 @@ class CarCtrl {
         this.car = new Car(dbPool)
     }
 
-    async listAll() {
+    async listAll(body) {
         const response = {
             message: null,
             statusCode: 500,
@@ -14,7 +14,7 @@ class CarCtrl {
         }
 
         try {
-            const carList = await this.car.listAll()            
+            const carList = await this.car.listAll(body)            
 
             response.data = carList
             response.statusCode = 200

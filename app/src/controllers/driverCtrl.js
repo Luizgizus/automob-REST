@@ -6,7 +6,7 @@ class DriverCtrl {
         this.driver = new Driver(dbPool)
     }
 
-    async listAll() {
+    async listAll(body) {
         const response = {
             message: null,
             statusCode: 500,
@@ -14,7 +14,7 @@ class DriverCtrl {
         }
 
         try {
-            const driverList = await this.driver.listAll()            
+            const driverList = await this.driver.listAll(body)            
 
             response.data = driverList
             response.statusCode = 200
