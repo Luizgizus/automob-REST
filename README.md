@@ -32,8 +32,16 @@ O start dos testes do projeto deve ser feito da seguinte forma
     <li>Listar</li>
         <ul>
             <li>Responsavel pela listagem de todos os carros</li>
-            <li>Metodo: GET</li>
-            <li>Rota: http://localhost:8000/automob/app/car</li>
+            <li>Metodo: POST</li>
+            <li>Rota: http://localhost:8000/automob/app/car/list</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "brand": STRING,
+                    "color": STRING
+                }
+                </code>
+            </li>
             <li>Retorna um objeto com um array de carros</li>
         </ul>
     <li>Listar Por Id</li>
@@ -91,8 +99,15 @@ O start dos testes do projeto deve ser feito da seguinte forma
     <li>Listar</li>
         <ul>
             <li>Responsavel pela listagem de todos os motorista</li>
-            <li>Metodo: GET</li>
-            <li>Rota: http://localhost:8000/automob/app/driver</li>
+            <li>Metodo: POST</li>
+            <li>Rota: http://localhost:8000/automob/app/driver/list</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "name": STRING
+                }
+                </code>
+            </li>
             <li>Retorna um objeto com um array de motorista</li>
         </ul>
     <li>Listar Por Id</li>
