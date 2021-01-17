@@ -109,7 +109,8 @@ class Driver {
 	            `automob.driver `+
             `SET `+
 	            `deletedAt = '${Moment().format("YYYY-MM-DD HH:mm:ss")}' ` +
-            `WHERE (id = ?)`
+            `WHERE (id = ?) ` + 
+            `AND deletedAt is null`
 
             const driver = await this.dbPool.query(query, [id])
             return driver

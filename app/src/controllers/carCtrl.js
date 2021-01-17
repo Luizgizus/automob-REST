@@ -144,8 +144,6 @@ class CarCtrl {
                 body.brand,
                 body.color
             )
-
-            console.log(createdCar)
             
             if(_.isEmpty(createdCar) && !createdCar.affectedRows){
                 response.message = "Não foi possivel criar esse carro tente novamente mais tarde"
@@ -204,7 +202,7 @@ class CarCtrl {
 
         try {
             const deletedCar = await this.car.delete(idCar)
-            
+        
             if(_.isEmpty(deletedCar) || deletedCar.affectedRows !== 1){
                 response.message = "Carro não encotrado"
                 response.statusCode = 404

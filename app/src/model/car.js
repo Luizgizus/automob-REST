@@ -143,7 +143,8 @@ class Car {
 	            `automob.car `+
             `SET `+
 	            `deletedAt = '${Moment().format("YYYY-MM-DD HH:mm:ss")}' ` +
-            `WHERE (id = ?)`
+            `WHERE (id = ?) ` +
+            `AND deletedAt is null`
 
             const car = await this.dbPool.query(query, [id])
             return car
