@@ -49,7 +49,11 @@ class DrivingCtrl {
             response.message = "nenhum dado do carro foi enviado"
             response.statusCode = 400
             response.isValid = false
-        } else if(_.isEmpty(driver) || driver.isUsingCar){
+        } else if(_.isEmpty(driver)){
+            response.message = "Esse motorista não existe"
+            response.statusCode = 400
+            response.isValid = false
+        } else if(driver.isUsingCar){
             response.message = "Esse motorista já está usando um carro"
             response.statusCode = 400
             response.isValid = false
@@ -57,7 +61,11 @@ class DrivingCtrl {
             response.message = "Favor informar corretamente o carro a ser alugado"
             response.statusCode = 400
             response.isValid = false
-        } else if(_.isEmpty(car) || car.isInUse){
+        } else if(_.isEmpty(car)){
+            response.message = "Esse carro não existe"
+            response.statusCode = 400
+            response.isValid = false
+        } else if(car.isInUse){
             response.message = "Esse carro já está em uso no momento"
             response.statusCode = 400
             response.isValid = false
@@ -90,8 +98,26 @@ class DrivingCtrl {
             }
         }
 
+        const driving = await this.driving.getDrivingById(body.idDriving)
+
         if(_.isEmpty(body)){
             response.message = "nenhum dado do carro foi enviado"
+            response.statusCode = 400
+            response.isValid = false
+        } else if(_.isEmpty(driving)){
+            response.message = "Esse aluguel não existe"
+            response.statusCode = 400
+            response.isValid = false
+        } else if(driving.endedAt){
+            response.message = "Esse alugueljá foi encerrado posteriormente"
+            response.statusCode = 400
+            response.isValid = false
+        } else if(driving.idCar !== parseInt(body.idCar)){
+            response.message = "Esse aluguel não pertence ao carro enviado"
+            response.statusCode = 400
+            response.isValid = false
+        } else if(driving.idDriver != parseInt(body.idDriver)){
+            response.message = "Esse aluguel não pertence ao motorista enviado"
             response.statusCode = 400
             response.isValid = false
         } else if(!body.idDriving){
@@ -130,12 +156,12 @@ class DrivingCtrl {
             )
             
             if(_.isEmpty(createdDriving) && !createdDriving.affectedRows){
-                await this.driver.setIsUsingCar(1, body.idDriver)
-                await this.car.setIsInUse(1, body.idCar)
-
                 response.message = "Não foi possivel prosseguir com esse aluguel de carro tente novamente mais tarde"
                 response.statusCode = 500
             } else {
+                await this.driver.setIsUsingCar(1, body.idDriver)
+                await this.car.setIsInUse(1, body.idCar)
+
                 response.message = "Aluguel de carro cadastrado com sucesso"
                 body.idDriving = createdDriving.insertId
                 response.data = body
@@ -162,12 +188,12 @@ class DrivingCtrl {
             )
             
             if(_.isEmpty(endedDriving) && !endedDriving.affectedRows){
-                await this.driver.setIsUsingCar(0, body.idDriver)
-                await this.car.setIsInUse(0, body.idCar) 
-
                 response.message = "Não foi possivel prosseguir com a finalização desse aluguel de carro tente novamente mais tarde"
                 response.statusCode = 500
             } else {
+                await this.driver.setIsUsingCar(0, body.idDriver)
+                await this.car.setIsInUse(0, body.idCar)
+
                 response.message = "Finalização do aluguel de carro cadastrado com sucesso"
                 response.data = body
                 response.statusCode = 200

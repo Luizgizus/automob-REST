@@ -34,6 +34,27 @@ class Driving {
 	
     }
 
+    async getDrivingById(idDriving){
+        try {
+			const query = 
+                `SELECT `+
+                    `id 'idDriving', `+
+                    `car_id 'idCar', `+
+                    `driver_id 'idDriver', `+
+                    `endedAt `+
+    
+                `FROM automob.driving dr `+
+
+                `WHERE dr.id = ?`
+
+            const driving = await this.dbPool.query(query, [idDriving])
+            return driving.pop()
+        } catch (err) {
+            throw new Error(`Problema ao recuperar aluguel de carro pelo identificador -> ${err.toString()}`)
+        }
+	
+    }
+
     async create(driverId, carId, reason){
         try {
 			const query = 
