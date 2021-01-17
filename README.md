@@ -22,4 +22,163 @@ O start dos testes do projeto deve ser feito da seguinte forma
 - Todos os testes irão ser testados e o resultado aparecerá na tela.
 
 
-Desde já, Obrigado.
+
+<h1>Rotas da API</h1>
+
+<h3>Car</h3>
+<p>Rota que faz o gerenciamento de todos os carros da aplicação</p>
+
+<ul>
+    <li>Listar</li>
+        <ul>
+            <li>Responsavel pela listagem de todos os carros</li>
+            <li>Metodo: GET</li>
+            <li>Rota: http://localhost:8000/automob/app/car</li>
+            <li>Retorna um objeto com um array de carros</li>
+        </ul>
+    <li>Listar Por Id</li>
+        <ul>
+            <li>Responsavel pela listagem de um carro especifico</li>
+            <li>Metodo: GET</li>
+            <li>Rota: http://localhost:8000/automob/app/car/$id$</li>
+            <li>Retorna um objeto de carros</li>
+        </ul>
+    <li>Criar</li>
+        <ul>
+            <li>Responsavel pela criação dos carro</li>
+            <li>Metodo: POST</li>
+            <li>Rota: http://localhost:8000/automob/app/car</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "plate": STRING,
+                    "brand": STRING,
+                    "color": STRING
+                }
+                </code>
+            </li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+    <li>Atualizar</li>
+        <ul>
+            <li>Responsavel pela atualização de um carro especifico</li>
+            <li>Metodo: PUT</li>
+            <li>Rota: http://localhost:8000/automob/app/car/$id$</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "plate": STRING,
+                    "brand": STRING,
+                    "color": STRING
+                }
+                </code>
+            </li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+    <li>Deletar</li>
+        <ul>
+            <li>Responsavel pela exclusão de um carro especifico</li>
+            <li>Metodo: DELETE</li>
+            <li>Rota: http://localhost:8000/automob/app/car/$id$</li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+</ul>
+
+<h3>Driver</h3>
+<p>Rota que faz o gerenciamento de todos os motoristas da aplicação</p>
+
+<ul>
+    <li>Listar</li>
+        <ul>
+            <li>Responsavel pela listagem de todos os motorista</li>
+            <li>Metodo: GET</li>
+            <li>Rota: http://localhost:8000/automob/app/driver</li>
+            <li>Retorna um objeto com um array de motorista</li>
+        </ul>
+    <li>Listar Por Id</li>
+        <ul>
+            <li>Responsavel pela listagem de um motorista especifico</li>
+            <li>Metodo: GET</li>
+            <li>Rota: http://localhost:8000/automob/app/driver/$id$</li>
+            <li>Retorna um objeto de motorista</li>
+        </ul>
+    <li>Criar</li>
+        <ul>
+            <li>Responsavel pela criação dos motorista</li>
+            <li>Metodo: POST</li>
+            <li>Rota: http://localhost:8000/automob/app/driver</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "name": STRING
+                }
+                </code>
+            </li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+    <li>Atualizar</li>
+        <ul>
+            <li>Responsavel pela atualização de um motorista especifico</li>
+            <li>Metodo: PUT</li>
+            <li>Rota: http://localhost:8000/automob/app/driver/$id$</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "name": STRING
+                }
+                </code>
+            </li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+    <li>Deletar</li>
+        <ul>
+            <li>Responsavel pela exclusão de um motorista especifico</li>
+            <li>Metodo: DELETE</li>
+            <li>Rota: http://localhost:8000/automob/app/driver/$id$</li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+</ul>
+
+<h3>Driving</h3>
+<p>Rota que faz o gerenciamento de todos os alugueis de carros da aplicação</p>
+<ul>
+    <li>Listar</li>
+        <ul>
+            <li>Responsavel pela listagem de todos os alugueis feitos pelos motoristas</li>
+            <li>Metodo: GET</li>
+            <li>Rota: http://localhost:8000/automob/app/driving</li>
+            <li>Retorna um objeto com um array de alugueis</li>
+        </ul>
+    <li>Criar</li>
+        <ul>
+            <li>Responsavel pela criação dos alugueis</li>
+            <li>Metodo: POST</li>
+            <li>Rota: http://localhost:8000/automob/app/driving/setInUse</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "idDriver": INTEGER,
+                    "idCar": INTEGER,
+                    "reason": STRING
+                }
+                </code>
+            </li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+    <li>Finalizar</li>
+        <ul>
+            <li>Responsavel pela finalização dos alugueis</li>
+            <li>Metodo: POST</li>
+            <li>Rota: http://localhost:8000/automob/app/driving/serFree</li>
+            <li>Body da requisição:
+                <code>
+                {
+                    "idDriver": INTEGER,
+                    "idCar": INTEGER,
+                    "idDriving": INTEGER
+                }
+                </code>
+            </li>
+            <li>Retorna um objeto informando se houve sucesso ou não</li>
+        </ul>
+</ul>
