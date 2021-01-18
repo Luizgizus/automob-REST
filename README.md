@@ -10,6 +10,7 @@ Pré-requisitos:
 Para startar o projeto o seguinte passo a passo deve ser cumprido anteriormente:
 
 - Abrir o comand na pasta raiz do projeto e executar o comando 'npm install'
+- Fazer uma cópia do arquivo .env.default, renomea-lo para .env, abrir o arquivo .env e preencher os dados escritos nele para a conexão com o banco de dados
 - Criar o banco de dados da aplicação:
 - O script do banco de dados da aplicação está na pasta 'documentation', e tem nome 'automobScrpt.sql'
 - Nele contem todos os comando necessários para instanciar o banco de dados que a aplicação preisa
